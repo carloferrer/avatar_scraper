@@ -36,8 +36,14 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
     var bodyJSON = JSON.parse(body);
 
-    console.log(bodyJSON[0]);
+    // console.log(bodyJSON[0].login);
+    // console.log(bodyJSON.length);
+    // console.log(bodyJSON);
     // console.log(JSON.parse(body));
+
+    for (var i = 0; i < bodyJSON.length; i++) {
+      console.log(bodyJSON[i].avatar_url);
+    }
   });
 }
 
