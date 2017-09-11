@@ -27,7 +27,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
     for (var i = 0; i < bodyJSON.length; i++) {
       console.log(bodyJSON[i].avatar_url);
-      cb(bodyJSON[i].avatar_url, './avatars/' + bodyJSON[i].login + '.jpg');
+      cb(bodyJSON[i].avatar_url, './avatars/' + bodyJSON[i].login);
     }
   });
 }
