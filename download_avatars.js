@@ -15,7 +15,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
   var options = {
     'url': requestURL,
     'headers': {
-      'User-Agent' :  "GitHub Avatar Downloader - Student Project"
+      'User-Agent' :  "carloferrer"
     }
   };
 
@@ -30,10 +30,18 @@ function getRepoContributors(repoOwner, repoName, cb) {
       data = response; // put response into a string variable
 
       console.log(data);
-    });
+  });
+    // .pipe(fs.createWriteStream('./avatarjsonlog.txt'));
+
+  let toBeIterated = request.get(options, function(err, response, body) {
+    console.log("Body: ", body);
+  });
+
+
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
   console.log("Errors:", err);
   console.log("Result:", result);
+  // console.log("Body:", body);
 });
