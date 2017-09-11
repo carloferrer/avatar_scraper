@@ -8,6 +8,10 @@ console.log('Welcome to the GitHub Avatar Downloader!\n');
 
 function getRepoContributors(repoOwner, repoName, cb) {
 
+  if (!(repoOwner && repoOwner !== "")) {
+    displayHelp();
+  }
+
   var requestURL = 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
 
   var options = {
@@ -32,8 +36,14 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
+function displayHelp() {
+  console.log("Please enter values for <owner> and <repo>.");
+  console.log("e.g.:");
+  console.log("/tnode download_avatars.js <owner> <repo>");
+}
+
 function downloadImageByURL(url, filePath) {
   request.get(url).pipe(fs.createWriteStream(filePath));
 }
 
-getRepoContributors("jquery", "jquery", downloadImageByURL);
+getRepoContributors(process.argv[2], process.argv[3], downloadImageByURL);
