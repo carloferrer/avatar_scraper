@@ -8,8 +8,6 @@ console.log('Welcome to the GitHub Avatar Downloader!\n');
 
 function getRepoContributors(repoOwner, repoName, cb) {
 
-  var data = '';
-
   var requestURL = 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
 
   var options = {
@@ -19,25 +17,28 @@ function getRepoContributors(repoOwner, repoName, cb) {
     }
   };
 
-  request.get(options)
-    .on('error', function(err) {
-      throw err;
-    })
-    .on('response', function(response) {
-      console.log('Response Status Code: ', response.statusCode, response.statusMessage);
-      console.log('Headers / Content Type: ', response.headers['content-type']);
+  // request.get(options)
+  //   .on('error', function(err) {
+  //     throw err;
+  //   })
+  //   .on('response', function(response) {
+  //     console.log('Response Status Code: ', response.statusCode, response.statusMessage);
+  //     console.log('Headers / Content Type: ', response.headers['content-type']);
 
-      data = response; // put response into a string variable
+  //     data = response; // put response into a string variable
 
-      console.log(data);
-  });
+  //     // console.log(data);
+  //   });
     // .pipe(fs.createWriteStream('./avatarjsonlog.txt'));
 
-  let toBeIterated = request.get(options, function(err, response, body) {
-    console.log("Body: ", body);
+  request.get(options, function(err, response, body){
+    // console.log(body);
+
+    var bodyJSON = JSON.parse(body);
+
+    console.log(bodyJSON[0]);
+    // console.log(JSON.parse(body));
   });
-
-
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
