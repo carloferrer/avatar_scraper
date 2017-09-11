@@ -26,7 +26,6 @@ function getRepoContributors(repoOwner, repoName, cb) {
     console.log('Response Status Code: ', response.statusCode, response.statusMessage);
     console.log('Headers / Content Type: ', response.headers['content-type']);
 
-
     var bodyJSON = JSON.parse(body);
 
     for (var i = 0; i < bodyJSON.length; i++) {
