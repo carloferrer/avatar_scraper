@@ -8,15 +8,16 @@ console.log('Welcome to the GitHub Avatar Downloader!');
 function getRepoContributors(repoOwner, repoName, cb) {
   var requestURL = 'https://' + GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
 
-  console.log(requestURL); // debugging
+  // console.log(requestURL); // debugging
 
   request.get(requestURL)
     .on('error', function(err) {
       throw err;
     })
     .on('response', function(response) {
-      console.log('Response Status Code: ', response.statusCode);
-    console.log('Headers / Content Type: ', response.headers['content-type']);
+      console.log('Response Status Code: ', response.statusCode, response.statusMessage);
+      console.log('Headers / Content Type: ', response.headers['content-type']);
+      // console.log(response);
     });
 }
 
