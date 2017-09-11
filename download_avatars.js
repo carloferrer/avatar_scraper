@@ -27,12 +27,13 @@ function getRepoContributors(repoOwner, repoName, cb) {
 
     for (var i = 0; i < bodyJSON.length; i++) {
       console.log(bodyJSON[i].avatar_url);
+      downloadImageByURL(bodyJSON[i].avatar_url, './avatars/' + bodyJSON[i].login + '.jpg');
     }
   });
 }
 
 function downloadImageByURL(url, filePath) {
-  // ...
+  request.get(url).pipe(fs.createWriteStream(filePath));
 }
 
 getRepoContributors("jquery", "jquery", function(err, result) {
