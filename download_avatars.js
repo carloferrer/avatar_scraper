@@ -1,5 +1,7 @@
-var GITHUB_USER = 'carloferrer';
-var GITHUB_TOKEN = '25a869c0dd19873ee0ff69b34be93bcd8c901096';
+require('dotenv').config();
+
+var GITHUB_USER = process.env.USER;
+var GITHUB_TOKEN = process.env.TOKEN;
 
 var request = require('request');
 var fs = require('fs');
